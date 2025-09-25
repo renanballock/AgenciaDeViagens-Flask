@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+    <div class="input-group mb-3"></div>
+        Usuário: <input type="text" class="form-control" name="username" aria-label="Username">
+        Senha: <input type="password" class="form-control" name="password" aria-label="Server">
+    </div>
+    <button class="btn btn-primary" type="submit">Entrar</button>
+</form>
+<p>Não tem conta? <a class="btn btn-warning" href="{{ url_for('auth.register') }}" role="button">Registre-se</a></p>
+{% endblock %}

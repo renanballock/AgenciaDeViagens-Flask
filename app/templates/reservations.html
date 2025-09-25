@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Reservas</h2>
+  <ul>
+    {% for r in reservas %}
+      <li>{{ r.cliente_nome }} — {{ r.quantidade }} vaga(s) — Pacote {{ r.pacote.nome }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated and user.role == 'cliente' %}
+  <h3>Nova reserva</h3>
+  <form method="post" action="/reservations/add">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Quantidade:</span>
+        <input type="number" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="quantidade">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">ID do Pacote:</span>
+        <input type="number" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="pacote_id"><br>
+      </div>
+    <button type="submit"  class="btn btn-outline-success">Reservar</button>
+  </form>
+  {% endif %}
+
+  <ul>
+    {% for r in reservas %}
+      <li>
+        {{ r.cliente_nome }} — {{ r.quantidade }} vaga(s) — Pacote {{ r.pacote.nome }}
+  
+        {% if user.is_authenticated %}
+          {% if user.role == 'admin' or r.cliente_nome == user.username %}
+            <a class="btn btn-outline-primary" href="{{ url_for('main.edit_reservation', res_id=r.id) }}" role="button">Editar</a>
+            <form method="post" action="{{ url_for('main.cancel_reservation', res_id=r.id) }}" style="display:inline;">
+              <button type="submit" class="btn btn-outline-danger">Cancelar</button>
+            </form>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  
+  
+{% endblock %}

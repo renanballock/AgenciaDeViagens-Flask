@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Pacotes</h2>
+  <ul>
+    {% for p in pacotes %}
+    <ol class="list-group">
+        <li class="list-group-item">{{ p.nome }} — {{ p.destino }} — {{ p.vagas }} vagas — R$ {{ p.preco }}</li>
+      </ol>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated and user.role == 'admin' %}
+  <h3>Adicionar pacote</h3>
+  <form method="post" action="/packages/add">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nome:</span>
+        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="nome">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Destino:</span>
+        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="destino">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Vagas:</span>
+        <input type="number" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="vagas">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Preço:</span>
+        <input type="number" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="preco">
+      </div>
+    <button type="submit" class="btn btn-outline-primary">Salvar</button>
+  </form>
+  {% endif %}
+{% endblock %}

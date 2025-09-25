@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Reserva</h2>
+<form method="post">
+  Pacote: {{ reserva.pacote.nome }}<br>
+  Cliente: {{ reserva.cliente_nome }}<br>
+  Quantidade: <input type="number" name="quantidade" value="{{ reserva.quantidade }}"><br>
+  <button type="submit">Atualizar</button>
+</form>
+<a href="{{ url_for('main.reservations') }}">Voltar</a>
+{% endblock %}

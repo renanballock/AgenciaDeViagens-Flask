@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Registro</h2>
+<form method="post">
+    <div class="input-group mb-3"></div>
+    Usuário:<input type="text" class="form-control" name="username" aria-label="Username">
+    <span class="input-group-text"></span>
+    Senha: <input type="password" class="form-control" name="password" aria-label="Server">
+</div>
+  Perfil:
+  <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+    <option selected>Selecione uma opção abaixo</option>
+    <option value="cliente">Entrar como Cliente</option>
+    <option value="admin">Entrar como Administrador</option>
+  </select><br>
+  <button type="submit" class="btn btn-outline-success">Registrar</button>
+</form>
+{% endblock %}
