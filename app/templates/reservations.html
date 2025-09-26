@@ -3,9 +3,11 @@
   <h2>Reservas</h2>
   <ul>
     {% for r in reservas %}
-      <li>{{ r.cliente_nome }} — {{ r.quantidade }} vaga(s) — Pacote {{ r.pacote.nome }}</li>
-    {% endfor %}
-  </ul>
+    <ol class="list-group">
+      <li class="list-group-item">{{ r.cliente_nome }} — {{ r.quantidade }} vaga(s) — Pacote {{ r.pacote.nome }}</li>
+    </ol>
+  {% endfor %}
+</ul>
 
   {% if user.is_authenticated and user.role == 'cliente' %}
   <h3>Nova reserva</h3>
